@@ -1,0 +1,169 @@
+.rmu-qol-card {
+  background: #061b2d;
+  border: 1px solid #174a78;
+  border-radius: 7px;
+  color: #f4f8fb;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 40px 1fr;
+  padding: 10px;
+}
+
+.rmu-qol-rail {
+  align-items: center;
+  background: #16558d;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  min-height: 130px;
+  overflow: hidden;
+}
+
+.rmu-qol-rail span {
+  color: #fff;
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+}
+
+.rmu-qol-card-body {
+  min-width: 0;
+}
+
+.rmu-qol-herb-icon {
+  align-items: center;
+  background: #123d64;
+  border-radius: 6px;
+  color: #b8f26a;
+  display: flex;
+  font-size: 28px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.rmu-qol-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.rmu-qol-card-target,
+.rmu-qol-tags {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.rmu-qol-card-text {
+  font-size: 12px;
+  line-height: 1.25;
+  margin-top: 4px;
+}
+
+.rmu-qol-rolls {
+  margin-top: 10px;
+}
+
+.rmu-qol-roll-row {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, .55);
+  border-radius: 4px;
+  display: flex;
+  font-weight: 800;
+  justify-content: center;
+  margin-top: 4px;
+  min-height: 24px;
+  text-align: center;
+}
+
+.rmu-qol-result {
+  background: #245f99;
+  border-radius: 5px;
+  display: grid;
+  gap: 5px;
+  line-height: 1.25;
+  margin-top: 10px;
+  padding: 9px;
+}
+
+.rmu-qol-result strong {
+  font-size: 14px;
+}
+
+.rmu-qol-result span {
+  font-size: 12px;
+}
+
+.rmu-qol-card-action {
+  background: #18a90f;
+  border: 0;
+  border-radius: 8px;
+  color: #061b06;
+  font-weight: 800;
+  margin-top: 8px;
+  padding: 5px 9px;
+}
+
+.rmu-qol-card-action.is-disabled {
+  background: #777;
+  color: #ddd;
+}
+
+.rmu-qol-herb-form {
+  display: grid;
+  gap: 10px;
+  padding: 8px;
+}
+
+.rmu-qol-herb-form .form-row {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 110px minmax(240px, 1fr);
+}
+
+.rmu-qol-herb-form label {
+  font-weight: 700;
+}
+
+.rmu-qol-herb-form select {
+  height: 32px;
+  width: 100%;
+}
+
+.rmu-qol-herb-form .check-row {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  padding-left: 120px;
+}
+
+.rmu-qol-herb-form .hint {
+  background: rgba(25, 95, 150, .15);
+  border-left: 4px solid #1b6ca8;
+  color: #333;
+  line-height: 1.35;
+  padding: 8px 10px;
+}
+
+.rmu-qol-herb-form .actions {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2px;
+}
+
+.rmu-qol-herb-form .actions button {
+  font-weight: 800;
+  height: 34px;
+}
+
+.rmu-qol-herb-form .actions [data-action="cancel"] {
+  background: #b95800;
+  color: #fff;
+}
