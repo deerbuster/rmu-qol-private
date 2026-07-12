@@ -4,6 +4,8 @@ const PENDING_FLAG = "herbPending";
 const SOCKET_NAME = `module.${MODULE_ID}`;
 const SOCKET_TIMEOUT_MS = 15000;
 const pendingSocketRequests = new Map();
+const SUPPORTED_EFFECTS = new Set(["heal-hits", "heal-stun", "heal-bleed", "action-points"]);
+const EXCLUDED_HERBS = new Set(["latha"]);
 
 const HERB_LIBRARY = {
   akbutege: { name: "Akbutege", notes: "Coastal plant. Heals 1-10 hits.", delay: "1d10", effects: [{ effect: "heal-hits", formula: "1d10" }] },
@@ -32,7 +34,15 @@ const HERB_LIBRARY = {
   suranie: { name: "Suranie", notes: "Stun relief for 1 round. Immediate.", delay: "0", effects: [{ effect: "heal-stun", formula: "1" }] },
   vinuk: { name: "Vinuk", notes: "Stun relief for 1-10 rounds. Immediate.", delay: "0", effects: [{ effect: "heal-stun", formula: "1d10" }] },
   welwal: { name: "Welwal", notes: "Stun relief for 3 rounds. Immediate.", delay: "0", effects: [{ effect: "heal-stun", formula: "3" }] },
-  witav: { name: "Witav", notes: "Stun relief for 2 rounds. Immediate.", delay: "0", effects: [{ effect: "heal-stun", formula: "2" }] }
+  witav: { name: "Witav", notes: "Stun relief for 2 rounds. Immediate.", delay: "0", effects: [{ effect: "heal-stun", formula: "2" }] },
+
+  anserke: { name: "Anserke", notes: "Stops bleeding by clotting and sealing a wound. Takes 3 rounds. Patient cannot move for one hour or wound will reopen.", delay: "3", effects: [{ effect: "heal-bleed", mode: "all" }] },
+  fek: { name: "Fek", notes: "Stops any bleeding. Patient cannot move for one hour or wound will reopen.", delay: "1d10", effects: [{ effect: "heal-bleed", mode: "all" }] },
+  harfy: { name: "Harfy", notes: "Immediately stops any form of bleeding. Treats cut wound.", delay: "0", effects: [{ effect: "heal-bleed", mode: "all" }] },
+  hugburtun: { name: "Hugburtun", notes: "Immediately stops any form of bleeding. Treats cut wound.", delay: "0", effects: [{ effect: "heal-bleed", mode: "all" }] },
+
+  elbensbasket: { name: "Elben's Basket", notes: "Heart stimulant. Doubles speed for 1 round (+4 AP). Instant effect. AF 15.", delay: "0", effects: [{ effect: "action-points", formula: "4", rounds: 1, label: "+4 AP" }] },
+  zulsendura: { name: "Zulsendura", aliases: ["Zulzendura"], notes: "Haste: +4 AP for three rounds. Instant effect. AF 22.", delay: "0", effects: [{ effect: "action-points", formula: "4", rounds: 3, label: "+4 AP" }] }
 };
 
 function norm(value) {
@@ -66,7 +76,10 @@ function hasRolledTotal(value) {
 function normalizeEffectName(effect) {
   const value = String(effect ?? "").toLowerCase();
   if (value === "reduce-stun" || value === "heal-stun" || value.includes("stun")) return "heal-stun";
-  return "heal-hits";
+  if (value === "heal-hits" || value === "hits" || value.includes("hit")) return "heal-hits";
+  if (value === "heal-bleed" || value === "reduce-bleed" || value.includes("bleed")) return "heal-bleed";
+  if (value === "action-points" || value === "ap" || value === "extra-ap" || value === "extra ap" || value === "haste" || value.includes("action") || value.includes("haste") || value.includes("extraap")) return "action-points";
+  return value;
 }
 
 function normalizeFormula(effectData) {
@@ -76,77 +89,132 @@ function normalizeFormula(effectData) {
 }
 
 function normalizeEffects(effects) {
-  return Array.from(effects ?? []).map(effect => ({
-    effect: normalizeEffectName(effect.effect),
-    formula: normalizeFormula(effect),
-    roundOffset: Number(effect.roundOffset ?? 0)
-  }));
+  return Array.from(effects ?? []).map(effect => {
+    const effectName = normalizeEffectName(effect.effect);
+    const normalized = {
+      ...effect,
+      effect: effectName,
+      formula: (effect.formula !== undefined || effect.value !== undefined) ? normalizeFormula(effect) : "0",
+      roundOffset: Number(effect.roundOffset ?? 0)
+    };
+    if (effect.rounds !== undefined) normalized.rounds = Number(effect.rounds);
+    if (effect.value !== undefined) normalized.value = Number(effect.value);
+    if (effect.durationSeconds !== undefined) normalized.durationSeconds = Number(effect.durationSeconds);
+    if (effect.durationFormula !== undefined) normalized.durationFormula = String(effect.durationFormula);
+    if (effect.durationUnit !== undefined) normalized.durationUnit = String(effect.durationUnit);
+    if (effect.mode !== undefined) normalized.mode = String(effect.mode);
+    if (effect.label !== undefined) normalized.label = String(effect.label);
+    if (effect.description !== undefined) normalized.description = String(effect.description);
+    return normalized;
+  });
+}
+
+function effectsAreSupported(effects) {
+  return Array.from(effects ?? []).every(effect => SUPPORTED_EFFECTS.has(effect.effect));
+}
+
+function herbEffectText(herb, { includeDelay = false } = {}) {
+  const effects = Array.from(herb?.effects ?? []).map(effect => {
+    const label = effect.label || effectTag(effect);
+    const formula = effect.formula && effect.formula !== "0" ? ` ${effect.formula}` : "";
+    const rounds = effect.rounds ? ` for ${effect.rounds} ${effect.rounds === 1 ? "round" : "rounds"}` : "";
+    return `${label}${formula}${rounds}`;
+  });
+
+  const delay = includeDelay && herb?.delayFormula && !formulaIsZero(herb.delayFormula)
+    ? [`Delay ${herb.delayFormula}`]
+    : [];
+
+  return [...effects, ...delay].join("; ");
 }
 
 function libraryToHerbData(key, libraryEntry) {
   const effects = normalizeEffects(libraryEntry.effects);
+  if (!effectsAreSupported(effects)) return null;
   const isStun = effects[0]?.effect === "heal-stun";
+  const isHeal = effects[0]?.effect === "heal-hits";
   return {
     key,
     label: libraryEntry.name,
-    type: isStun ? "stun" : "heal",
+    type: isStun ? "stun" : isHeal ? "heal" : "effect",
     description: libraryEntry.notes,
     delayFormula: String(libraryEntry.delay ?? "0"),
     immediateOnly: formulaIsZero(libraryEntry.delay),
-    effectLabel: isStun ? "Reduce Stun" : "Heal Hits",
+    effectLabel: effectTag(effects[0]),
     effects
   };
 }
 
 function getLibraryKeyFromItem(item) {
   const itemName = norm(item.name);
-  return Object.keys(HERB_LIBRARY).find(key => itemName.includes(norm(HERB_LIBRARY[key].name)));
+  if (EXCLUDED_HERBS.has(itemName)) return null;
+
+  return Object.keys(HERB_LIBRARY).find(key => {
+    const entry = HERB_LIBRARY[key];
+    const names = [entry.name, ...(entry.aliases ?? [])];
+    return names.some(name => itemName.includes(norm(name)));
+  });
+}
+
+function itemIsExcludedHerb(item) {
+  return EXCLUDED_HERBS.has(norm(item.name));
 }
 
 function itemIsRealHerb(item) {
+  if (itemIsExcludedHerb(item)) return false;
   return norm(item.type) === "herb" || !!getLibraryKeyFromItem(item);
 }
 
 function makeHerbFromRmuItem(item, key, libraryEntry) {
   const itemEffects = normalizeEffects(foundry.utils.getProperty(item, "system.effects"));
+  if (itemEffects.length && !effectsAreSupported(itemEffects)) return null;
+
   const base = libraryEntry ? libraryToHerbData(key, libraryEntry) : null;
   const effects = itemEffects.length
     ? mergeItemEffectsWithLibraryTiming(itemEffects, base?.effects ?? [])
     : (base?.effects ?? []);
+
+  if (!effects.length || !effectsAreSupported(effects)) return null;
+
   const isStun = effects[0]?.effect === "heal-stun";
+  const isHeal = effects[0]?.effect === "heal-hits";
   const notes = stripHtml(foundry.utils.getProperty(item, "system.notes") ?? "").trim();
 
   return {
     key,
     label: item.name,
-    type: isStun ? "stun" : "heal",
-    description: notes || base?.description || (isStun ? "Stun relief herb." : "Healing herb."),
+    type: isStun ? "stun" : isHeal ? "heal" : "effect",
+    description: notes || base?.description || (isStun ? "Stun relief herb." : isHeal ? "Healing herb." : "Herb effect."),
     delayFormula: base?.delayFormula ?? "0",
     immediateOnly: isStun || formulaIsZero(base?.delayFormula ?? "0"),
-    effectLabel: isStun ? "Reduce Stun" : "Heal Hits",
-    effects: effects.length ? effects : [{
-      effect: isStun ? "heal-stun" : "heal-hits",
-      formula: "1d10",
-      roundOffset: 0
-    }]
+    effectLabel: effectTag(effects[0]),
+    effects
   };
 }
 
 function mergeItemEffectsWithLibraryTiming(itemEffects, libraryEffects) {
   if (!libraryEffects.length) return itemEffects;
+  if (itemEffects.length > libraryEffects.length) return libraryEffects;
   if (libraryEffects.length <= itemEffects.length) {
     return itemEffects.map((effect, index) => ({
+      ...libraryEffects[index],
       ...effect,
       roundOffset: Number(effect.roundOffset ?? libraryEffects[index]?.roundOffset ?? 0)
     }));
   }
 
   return libraryEffects.map((libraryEffect, index) => {
-    const itemEffect = itemEffects[index] ?? itemEffects.find(effect => effect.effect === libraryEffect.effect) ?? itemEffects[0];
+    const indexedEffect = itemEffects[index];
+    const itemEffect = indexedEffect?.effect === libraryEffect.effect
+      ? indexedEffect
+      : itemEffects.find(effect => effect.effect === libraryEffect.effect);
+
     return {
+      ...libraryEffect,
+      ...(itemEffect ?? {}),
       effect: itemEffect?.effect ?? libraryEffect.effect,
       formula: itemEffect?.formula ?? libraryEffect.formula,
-      roundOffset: Number(libraryEffect.roundOffset ?? itemEffect?.roundOffset ?? 0)
+      roundOffset: Number(itemEffect?.roundOffset ?? libraryEffect.roundOffset ?? 0)
     };
   });
 }
@@ -157,10 +225,13 @@ function getHerbFromItem(item) {
 
   if (norm(item.type) === "herb") {
     const herbData = makeHerbFromRmuItem(item, key ?? `custom:${item.id}`, libraryEntry);
-    return { herbKey: herbData.key, herbData };
+    return herbData ? { herbKey: herbData.key, herbData } : null;
   }
 
-  if (key) return { herbKey: key, herbData: libraryToHerbData(key, libraryEntry) };
+  if (key) {
+    const herbData = libraryToHerbData(key, libraryEntry);
+    return herbData ? { herbKey: key, herbData } : null;
+  }
   return null;
 }
 
@@ -223,6 +294,10 @@ function activeGmNames() {
     .filter(user => user.active && user.isGM)
     .map(user => user.name)
     .join(", ");
+}
+
+function socketSafeData(value) {
+  return value === undefined ? null : JSON.parse(JSON.stringify(value));
 }
 
 async function requestGmAction(action, payload) {
@@ -297,7 +372,7 @@ export function registerGmSocket() {
         requestId: packet.requestId,
         userId: packet.userId,
         ok: true,
-        result
+        result: socketSafeData(result)
       });
     } catch (error) {
       console.error(`${MODULE_ID} | GM socket action failed`, error);
@@ -328,7 +403,15 @@ async function rollFormula(formula) {
 }
 
 function effectTag(effect) {
-  return effect.effect === "heal-stun" ? "Reduce Stun" : "Heal Hits";
+  if (!effect) return "Herb Effect";
+
+  const labels = {
+    "heal-hits": "Heal Hits",
+    "heal-stun": "Reduce Stun",
+    "heal-bleed": "Stop Bleeding",
+    "action-points": "Action Points"
+  };
+  return labels[effect.effect] ?? effect.label ?? effect.effect ?? "Herb Effect";
 }
 
 function rollRows(rolls) {
@@ -449,18 +532,170 @@ async function applyStunRelief(actor, amount) {
   if (!live) return { ok: false, text: `The Stun effect was not found directly on ${actor.name}.` };
 
   if (totalStunRounds(after) <= 0) {
-    await actor.deleteEmbeddedDocuments("ActiveEffect", [stunEffect.id]);
+    await safeDeleteActiveEffects(actor, [stunEffect.id], "Stun relief");
   } else {
     const delayAfter = Math.min(Number(stunEffect.system?.delayDecayRounds ?? 0), totalStunRounds(after));
-    await actor.updateEmbeddedDocuments("ActiveEffect", [{
+    await safeUpdateActiveEffects(actor, [{
       _id: stunEffect.id,
       "system.rounds": after,
       "system.delayDecayRounds": delayAfter
-    }]);
+    }], "Stun relief");
   }
 
   actor.sheet?.render(false);
   return { ok: true, text: `Reduce Stun: ${reduced}.` };
+}
+
+function findEffects(actor, matcher) {
+  return Array.from(actor.effects ?? []).filter(matcher);
+}
+
+function effectName(effect) {
+  return norm(`${effect.name ?? ""} ${effect.system?.effect ?? ""} ${effect.system?.type ?? ""}`);
+}
+
+function isMissingDocumentError(error) {
+  const message = String(error?.message ?? error);
+  return message.includes("does not exist") || message.includes("undefined id");
+}
+
+async function safeDeleteActiveEffects(actor, ids, context = "ActiveEffect delete") {
+  const liveIds = Array.from(new Set(Array.from(ids ?? []).filter(id => actor.effects.get(id))));
+  if (!liveIds.length) return [];
+
+  try {
+    return await actor.deleteEmbeddedDocuments("ActiveEffect", liveIds);
+  } catch (error) {
+    if (!isMissingDocumentError(error)) throw error;
+    console.warn(`${MODULE_ID} | ${context} skipped stale effect id.`, liveIds, error);
+    return [];
+  }
+}
+
+async function safeUpdateActiveEffects(actor, updates, context = "ActiveEffect update") {
+  const liveUpdates = Array.from(updates ?? []).filter(update => update?._id && actor.effects.get(update._id));
+  if (!liveUpdates.length) return [];
+
+  try {
+    return await actor.updateEmbeddedDocuments("ActiveEffect", liveUpdates);
+  } catch (error) {
+    if (!isMissingDocumentError(error)) throw error;
+    console.warn(`${MODULE_ID} | ${context} skipped stale effect id.`, liveUpdates.map(update => update._id), error);
+    return [];
+  }
+}
+
+async function applyBleedRelief(actor, rollData) {
+  const bleeds = findEffects(actor, effect =>
+    effect.system?.type === "injury" &&
+    (effectName(effect).includes("bleed") || effect.statuses?.has?.("rmu-bleeding"))
+  );
+
+  if (!bleeds.length) return { ok: false, text: `${actor.name} has no Bleed effects to treat.` };
+
+  const mode = rollData.mode ?? "all";
+  if (mode === "all") {
+    await safeDeleteActiveEffects(actor, bleeds.map(effect => effect.id), "Bleed relief");
+    actor.sheet?.render(false);
+    return { ok: true, text: `${actor.name}'s bleeding has been stopped.` };
+  }
+
+  const amount = Number(rollData.total ?? rollData.value ?? 0);
+  const updates = [];
+  const deletes = [];
+  let reduced = 0;
+
+  for (const bleed of bleeds.sort((a, b) => Number(b.system?.value ?? 0) - Number(a.system?.value ?? 0))) {
+    const value = Number(bleed.system?.value ?? 0);
+    if (value <= 0) continue;
+
+    if (mode === "threshold" && value > amount) continue;
+
+    const change = mode === "threshold" ? value : Math.min(value, amount - reduced);
+    if (change <= 0) break;
+
+    const next = Math.max(0, value - change);
+    reduced += change;
+    if (next <= 0) deletes.push(bleed.id);
+    else updates.push({ _id: bleed.id, "system.value": next, "system.healingSpellType": "herb" });
+
+    if (mode !== "all" && reduced >= amount) break;
+  }
+
+  if (updates.length) await safeUpdateActiveEffects(actor, updates, "Bleed relief");
+  if (deletes.length) await safeDeleteActiveEffects(actor, deletes, "Bleed relief");
+  actor.sheet?.render(false);
+
+  return reduced > 0
+    ? { ok: true, text: `${actor.name}'s bleeding is reduced by ${reduced} HP/round.` }
+    : { ok: false, text: `${actor.name}'s bleeding was not changed.` };
+}
+
+function durationForRoll(rollData) {
+  if (Number.isFinite(Number(rollData.durationSeconds))) return { seconds: Number(rollData.durationSeconds), startTime: game.time.worldTime };
+
+  if (Number.isFinite(Number(rollData.durationTotal)) && rollData.durationUnit) {
+    const total = Math.max(0, Number(rollData.durationTotal));
+    const unit = String(rollData.durationUnit).toLowerCase();
+    if (unit.startsWith("round")) {
+      return game.combat
+        ? { rounds: total, startRound: game.combat.round, startTurn: game.combat.turn ?? 0 }
+        : { seconds: total * 5, startTime: game.time.worldTime };
+    }
+    const secondsPer = unit.startsWith("hour") ? 3600 : unit.startsWith("day") ? 86400 : 60;
+    return { seconds: total * secondsPer, startTime: game.time.worldTime };
+  }
+
+  const rounds = Number(rollData.rounds ?? 0);
+  if (rounds > 0) {
+    return game.combat
+      ? { rounds, startRound: game.combat.round, startTurn: game.combat.turn ?? 0 }
+      : { seconds: rounds * 5, startTime: game.time.worldTime };
+  }
+
+  return {};
+}
+
+function enrichRollDataForEffect(rollData, data = null) {
+  if (!data) return rollData;
+
+  const herb = getHerbFromData(data);
+  if (data.sourceActorName && !rollData.sourceName) rollData.sourceName = data.sourceActorName;
+  if (herb?.label && !rollData.herbName) rollData.herbName = herb.label;
+  if (data.herbKey && !rollData.herbKey) rollData.herbKey = data.herbKey;
+  return rollData;
+}
+
+async function createRmuEffect(actor, data) {
+  const created = await actor.createEmbeddedDocuments("ActiveEffect", [data]);
+  actor.sheet?.render(false);
+  return created[0];
+}
+
+async function createActionPointEffect(actor, rollData) {
+  const value = Number(rollData.total ?? rollData.value ?? 0);
+  const rounds = Math.max(1, Number(rollData.rounds ?? 1));
+  const effectData = {
+    name: "Action Points",
+    type: "action-points",
+    img: "icons/svg/upgrade.svg",
+    transfer: true,
+    disabled: false,
+    duration: durationForRoll({ ...rollData, rounds }),
+    system: {
+      source: rollData.sourceName ?? "Herb",
+      value,
+      delayEffect: false,
+      pending: !game.combat?.id,
+      rounds,
+      description: rollData.description ?? `${value >= 0 ? "+" : ""}${value} AP from herb.`,
+      summary: { bonus: `${value >= 0 ? "+" : ""}${value} AP` }
+    },
+    flags: { rmu: { showEffectOwnerOnly: true } }
+  };
+
+  await createRmuEffect(actor, effectData);
+  return { ok: true, text: `${actor.name} gains ${value >= 0 ? "+" : ""}${value} AP for ${rounds} ${rounds === 1 ? "round" : "rounds"}.` };
 }
 
 function pendingSummary(data) {
@@ -472,11 +707,23 @@ function pendingSummary(data) {
 }
 
 async function createOrRefreshPendingEffectLocal(actor, data) {
+  if (data.applied) {
+    await deletePendingEffectLocal(actor, data.messageId);
+    return null;
+  }
+
   const herb = getHerbFromData(data);
   const display = pendingSummary(data);
-  const existing = Array.from(actor.effects ?? []).find(effect =>
+  const matches = Array.from(actor.effects ?? []).filter(effect =>
     effect.getFlag(MODULE_ID, PENDING_FLAG)?.messageId === data.messageId
   );
+  const liveMatches = matches.filter(effect => actor.effects.get(effect.id));
+  const existing = liveMatches[0] ?? null;
+
+  const duplicateIds = liveMatches.slice(1).map(effect => effect.id);
+  if (duplicateIds.length) {
+    await safeDeleteActiveEffects(actor, duplicateIds, "Duplicate pending herb cleanup");
+  }
 
   const currentRound = game.combat?.round ?? 0;
   const notApplied = data.pendingRolls.filter(roll => !roll.applied);
@@ -484,13 +731,14 @@ async function createOrRefreshPendingEffectLocal(actor, data) {
     ? Math.max(...notApplied.map(roll => roll.dueRound ?? data.nextRound ?? currentRound))
     : currentRound;
   const durationRounds = Math.max(1, lastDueRound - currentRound);
+  const effectDurationRounds = durationRounds + 1;
 
   const effectData = {
     name: `${herb.label} Pending`,
     type: "enchantment",
     icon: "icons/svg/aura.svg",
     duration: {
-      rounds: durationRounds,
+      rounds: effectDurationRounds,
       startRound: currentRound,
       startTurn: game.combat?.turn ?? 0
     },
@@ -520,8 +768,9 @@ async function createOrRefreshPendingEffectLocal(actor, data) {
   };
 
   if (existing) {
-    await existing.update(effectData);
-    return existing;
+    const updated = await safeUpdateActiveEffects(actor, [{ _id: existing.id, ...effectData }], "Pending herb refresh");
+    if (updated.length) return actor.effects.get(existing.id) ?? updated[0] ?? null;
+    console.warn(`${MODULE_ID} | Pending herb effect was already gone; recreating it.`, existing.id);
   }
 
   const created = await actor.createEmbeddedDocuments("ActiveEffect", [effectData]);
@@ -530,18 +779,6 @@ async function createOrRefreshPendingEffectLocal(actor, data) {
 
 async function createOrRefreshPendingEffect(actor, data) {
   if (actorCanUse(actor)) return createOrRefreshPendingEffectLocal(actor, data);
-
-  game.socket.emit(SOCKET_NAME, {
-    type: "request",
-    requestId: foundry.utils.randomID(),
-    userId: game.user.id,
-    action: "createOrRefreshPendingEffect",
-    payload: {
-      targetActorId: actor.id,
-      targetTokenId: data.targetTokenId,
-      data
-    }
-  });
 
   return null;
 }
@@ -557,12 +794,15 @@ async function createOrRefreshPendingEffectViaGm(actor, data) {
 }
 
 async function deletePendingEffectLocal(actor, messageId) {
-  const effect = Array.from(actor.effects ?? []).find(candidate =>
+  const ids = Array.from(actor.effects ?? [])
+    .filter(candidate =>
     candidate.getFlag(MODULE_ID, PENDING_FLAG)?.messageId === messageId
-  );
+    )
+    .filter(candidate => actor.effects.get(candidate.id))
+    .map(candidate => candidate.id);
 
-  if (effect && actor.effects.get(effect.id)) {
-    await actor.deleteEmbeddedDocuments("ActiveEffect", [effect.id]);
+  if (ids.length) {
+    await safeDeleteActiveEffects(actor, ids, "Pending herb cleanup");
   }
 }
 
@@ -583,13 +823,31 @@ async function ensureRollData(rollData) {
   return rollData;
 }
 
+async function ensureDurationData(rollData) {
+  if (!rollData.durationFormula || hasRolledTotal(rollData.durationTotal)) return rollData;
+  const roll = await rollFormula(rollData.durationFormula);
+  rollData.durationTotal = roll.total;
+  return rollData;
+}
+
 async function applyRollToActorLocal(actor, rollData) {
   await ensureRollData(rollData);
-  if (rollData.effect === "heal-stun") return applyStunRelief(actor, rollData.total);
-  return applyHealing(actor, rollData.total);
+  await ensureDurationData(rollData);
+
+  const handlers = {
+    "heal-hits": (target, data) => applyHealing(target, data.total),
+    "heal-stun": (target, data) => applyStunRelief(target, data.total),
+    "heal-bleed": applyBleedRelief,
+    "action-points": createActionPointEffect
+  };
+
+  const handler = handlers[rollData.effect];
+  if (!handler) return { ok: false, text: `Unsupported herb effect: ${rollData.effect}.` };
+  return handler(actor, rollData);
 }
 
 async function applyRollToActor(actor, rollData, data = null) {
+  enrichRollDataForEffect(rollData, data);
   if (actorCanUse(actor)) return applyRollToActorLocal(actor, rollData);
 
   const response = await requestGmAction("applyRollToActor", {
@@ -792,6 +1050,13 @@ export async function checkAllHerbTimers() {
 
       const message = game.messages.get(data.messageId);
       const latest = foundry.utils.deepClone(message?.getFlag(MODULE_ID, HERB_FLAG) ?? data);
+      if (!message || latest.applied) {
+        await deletePendingEffectLocal(actor, data.messageId);
+        checked.add(data.messageId);
+        continue;
+      }
+
+      checked.add(data.messageId);
       await applyDueSchedule(actor, latest, message);
     }
   }
@@ -862,8 +1127,9 @@ function herbOptionsForToken(tokenId) {
 
   return herbs.map(entry => {
     const herb = entry.herbData;
-    const effectText = herb.effects.map(effect => effect.formula).join(", ");
-    return `<option value="${entry.item.id}">${escapeHtml(herb.label)} (${escapeHtml(effectText)}, qty ${entry.quantity})</option>`;
+    const effectText = herbEffectText(herb, { includeDelay: true });
+    const description = [herb.description, effectText].filter(Boolean).join(" ");
+    return `<option value="${entry.item.id}" data-description="${escapeHtml(description)}">${escapeHtml(herb.label)} - ${escapeHtml(effectText)} (qty ${entry.quantity})</option>`;
   }).join("");
 }
 
@@ -900,6 +1166,7 @@ async function useHerbFromForm(root, app) {
     for (const effect of herb.effects) {
       const roll = await rollFormula(effect.formula);
       rolls.push({
+        ...effect,
         effect: effect.effect,
         formula: effect.formula,
         roundOffset: Number(effect.roundOffset ?? 0),
@@ -941,6 +1208,7 @@ async function useHerbFromForm(root, app) {
     pendingRolls: isImmediate
       ? []
       : herb.effects.map(effect => ({
+        ...effect,
         effect: effect.effect,
         formula: effect.formula,
         roundOffset: Number(effect.roundOffset ?? 0),
@@ -1014,7 +1282,7 @@ export class RMUHerbUseApplication extends foundry.applications.api.ApplicationV
     <input type="checkbox" name="forceImmediate">
     <span>Apply herb effect immediately</span>
   </label>
-  <div class="hint">RMU herb items use their own effects. The built-in library supplies delay timing.</div>
+  <div class="hint" data-herb-preview></div>
   <div class="actions">
     <button type="button" data-action="use"><i class="fas fa-leaf"></i> Use</button>
     <button type="button" data-action="cancel">Cancel</button>
@@ -1033,10 +1301,20 @@ export class RMUHerbUseApplication extends foundry.applications.api.ApplicationV
     const root = this.element;
     const source = root.querySelector('[name="sourceTokenId"]');
     const herb = root.querySelector('[name="itemId"]');
+    const preview = root.querySelector("[data-herb-preview]");
+
+    const updatePreview = () => {
+      const selected = herb?.selectedOptions?.[0];
+      preview.textContent = selected?.dataset.description || "Select a supported herb.";
+    };
 
     source?.addEventListener("change", () => {
       herb.innerHTML = herbOptionsForToken(source.value);
+      updatePreview();
     });
+
+    herb?.addEventListener("change", updatePreview);
+    updatePreview();
 
     root.querySelector('[data-action="cancel"]')?.addEventListener("click", () => this.close());
     root.querySelector('[data-action="use"]')?.addEventListener("click", async event => {
