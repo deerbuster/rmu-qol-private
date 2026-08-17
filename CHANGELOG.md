@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.4
+
+- Added the personal Character Companion QoL Talent/Flaw compendium.
+- Added Mental and Special Talent/Flaw categories to RMU item sheets.
+
 ## 0.2.3
 
 - Explicitly excluded Latha from the supported herb picker.

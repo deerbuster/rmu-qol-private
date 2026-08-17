@@ -1,4 +1,5 @@
 import { RMUHerbUseApplication, checkAllHerbTimers, registerGmSocket, registerHerbChatListeners } from "./rmu-herbs.js";
+import { registerTalentCategories } from "./talent-categories.js";
 
 const MODULE_ID = "rmu-qol";
 
@@ -39,6 +40,8 @@ function registerSceneControls() {
 
 Hooks.once("init", () => {
   console.log(`${MODULE_ID} | Initializing`);
+
+  registerTalentCategories();
 
   game.rmuQol = {
     openHerbUse,

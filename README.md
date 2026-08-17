@@ -4,6 +4,8 @@ Foundry VTT v14 module for Rolemaster Unified quality-of-life tools.
 
 ## Features
 
+- Character Companion QoL compendium with categorized Talents and Flaws for personal campaign use.
+- Mental and Special Talent/Flaw item categories.
 - Scene-based herb application.
 - Adds a Use Herb leaf button to Foundry's Token Controls palette.
 - Source actor and recipient actor are selected separately.
@@ -19,7 +21,7 @@ Foundry VTT v14 module for Rolemaster Unified quality-of-life tools.
 In Foundry VTT, open **Add-on Modules**, choose **Install Module**, and paste this manifest URL:
 
 ```text
-https://github.com/deerbuster/rmu-qol/releases/latest/download/module.json
+https://github.com/deerbuster/rmu-qol-private/releases/latest/download/module.json
 ```
 
 Enable **RMU QoL** in your world after installation.

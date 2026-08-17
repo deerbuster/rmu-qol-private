@@ -31,7 +31,7 @@ jobs:
         run: |
           mkdir -p dist
           zip -r "dist/rmu-qol.zip" \
-            module.json README.md CHANGELOG.md scripts styles \
+            module.json README.md CHANGELOG.md scripts styles packs \
             -x "*.git*" ".github/*" "dist/*"
           cp module.json dist/module.json
 
