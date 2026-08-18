@@ -5,6 +5,7 @@ Foundry VTT v14 module for Rolemaster Unified quality-of-life tools.
 ## Features
 
 - Character Companion QoL compendium with categorized Talents and Flaws for personal campaign use.
+- Character Companion fighting-style skills, organized like Core Law under Skills and exposed on RMU character sheets with fixed specialization choices.
 - Mental and Special Talent/Flaw item categories.
 - Scene-based herb application.
 - Adds a Use Herb leaf button to Foundry's Token Controls palette.

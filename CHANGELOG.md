@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.5
+
+- Added the Character Companion Battle Styles, Combat Styles, and Discipline Styles skills.
+- Added fixed specialization choices for all published Character Companion fighting styles.
+- Integrated the module skills with RMU's undeveloped-skill list and normal character-sheet workflow.
+- Added RMU-compatible display labels for the three new skills.
+- Collapsed fighting styles to one undeveloped row per style skill and moved the fixed choices into RMU's Add Skill dialog.
+- Corrected undeveloped fighting-style source UUIDs to resolve from the module compendium instead of `rmu.core`.
+- Added prerequisites, descriptions, ability lists, and source references to the fighting-style picker and newly created style skills.
+- Added reference-only fighting-style ability compendium records and rank-allocation management on developed style skills.
+- Replaced generic ability placeholders with individual Type, Requirements, Rank Cost, and rules descriptions from Character Companion.
+
 ## 0.2.4
 
 - Added the personal Character Companion QoL Talent/Flaw compendium.

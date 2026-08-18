@@ -167,3 +167,62 @@
   background: #b95800;
   color: #fff;
 }
+.rmu-qol-style-details {
+  margin-top: 0.75rem;
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: 0.75rem 1rem;
+}
+
+.rmu-qol-style-details h2,
+.rmu-qol-style-details h3 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.rmu-qol-style-details p {
+  margin: 0.4rem 0;
+}
+
+.rmu-qol-style-abilities {
+  columns: 2;
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.rmu-qol-manage-abilities {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.7rem;
+  gap: 0.2rem;
+  height: 1.5rem;
+  justify-content: center;
+  min-width: 3.2rem;
+  padding: 0 0.3rem;
+}
+
+.rmu-qol-ability-dialog table {
+  width: 100%;
+}
+
+.rmu-qol-ability-dialog tbody {
+  display: table-row-group;
+}
+
+.rmu-qol-ability-dialog td:first-child {
+  text-align: center;
+  width: 5rem;
+}
+
+.rmu-qol-ability-count {
+  width: 4rem;
+}
+
+.rmu-qol-allocation-status {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.rmu-qol-overallocated {
+  color: var(--color-level-error, #ff4d4d);
+}

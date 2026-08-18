@@ -1,0 +1,281 @@
+{
+  "Armored Mount": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 4 Your familiarity with armor and your mount permits you to apply half of your Maneuver in Armor skill to your mount (as well as your full skill to yourself as usual)."
+  },
+  "Aspect of Fear": {
+    "rulesText": "Type: Battle Requirements: None Rank Cost: 4 You know how to terrify your foes. You gain a +10 bonus to any Intimidation maneuver during battle, and any enemy within 30' of you making a resistance roll against fear for any reason receives a penalty of -10 to that RR (this is not cumulative if multiple combatants have this ability)."
+  },
+  "Assess the Field": {
+    "rulesText": "Type: any Requirements: None Rank Cost: 2 You are attentive to battlefield conditions and have learned to quickly assess the status of your allies and foes. With a successful Perception maneuver, you can determine the approximate condition of all visible allies and enemies, including their current penalties for hits lost (-10 for 26-50% of hits lost, -20 for 5175%, -30 for 76% or more), stun, fatigue, and injuries. Without this ability, you could assess the same about a single individual, or get a more general overview of the field."
+  },
+  "Battle Line": {
+    "rulesText": "Type: Battle T Requirements: combatants under your leadership R Rank Cost: 4 R Under your direction, allies are better able to defend W each other. After spending one round calling out dit rections and orders (requiring Concentration) to a w contiguous group of allies (each individual must be o within melee range of the closest ally on each side), y you grant a bonus of twice your Leadership ranks to m their Protect maneuvers. They continue to receive this m benefit until they are no longer adjacent to any allies c from the original group, or the end of the battle."
+  },
+  "Binding Chain": {
+    "rulesText": "Type: Battle or Discipline R Requirements: Chain weapon (e.g., flail) A Rank Cost: 4 ( Rather than smashing or beating your foe, you can take advantage of your weapon’s flexibility to bind or entangle them. When doing so, your attack will be at -10, but any critical inflicted will be a Grapple critical."
+  },
+  "Brave Legion": {
+    "rulesText": "Type: Battle Requirements: None Rank Cost: 4 You are used to fighting close alongside allies. You gain a +20 bonus to RRs against fear effects if you have an ally within 5', +30 if you have an ally to each side."
+  },
+  "Bullrush": {
+    "rulesText": "Type: Battle Requirements: Shield, Overbearing ability Rank Cost: 4 When you make a shield bash attack, you may choose to knock your foe back instead of dealing a critical, in which case the result is given on the table below based on the severity of critical achieved by your attack, and your foe must make a medium Running or Acrobatics maneuver (their choice) to remain standing. You must make the decision to use this ability before rolling the critical. Table 4.2a - Bullrush Critical Effects Critical Severity Effect A +5 Hits, Knocked back 5' B +10 Hits, Stagger, KB 5' C +15 Hits, Stagger, KB 10' D +20 Hits, Stun[-25], KB 10' E +25 Hits, Stun[-50], KB 15'"
+  },
+  "Careful Shot": {
+    "rulesText": "Type: Combat Requirements: Missile weapon Rank Cost: 3 After rolling your attack, but before rolling the critical (if any), you may decide not to take the shot. You were able to tell there was not a good opportunity, due to wind, position, etc. This saves your arrow or bolt and, if you are concealed, avoids revealing your location any sooner than necessary."
+  },
+  "Concealed Strike": {
+    "rulesText": "Type: Combat or Discipline Requirements: Dagger or small weapon Rank Cost: 3 You are adept at striking with a hidden weapon. To use this ability, make a Trickery maneuver as a free action while drawing a concealed weapon (requiring the usual 1 AP action unless you have the Quickdraw talent), opposed by your foe’s Perception. If your Trickery wins the conflicted maneuver, your foe may not apply ROLEMASTER any DB from Quickness, Parry, or Dodge against your next attack with this weapon in the same or following Character round. A foe who has seen you use this ability gains Companion +30 on their Perception when you use this ability against them. This ability is not sufficient to permit the use of Ambush skill (but see the Improved Concealed Strike ability)."
+  },
+  "Coordinated Maneuver": {
+    "rulesText": "Type: Battle Requirements: combatants under your leadership Rank Cost: 4 When two or more allies are within melee range of a single foe, you can guide them to work together to overwhelm the foe’s defenses or deflect the foe’s attacks. After spending one round calling out directions and orders (requiring Concentration), you grant each such ally a bonus to their OB or DB equal to your Leadership ranks, for all attacks in the same or subsequent round."
+  },
+  "Defensive Bash": {
+    "rulesText": "Type: Battle Requirements: Shield Rank Cost: 3 When you make a shield bash attack, you may still benefit from half of your shield’s base DB (e.g., +10 for a normal shield), although you still may not benefit from a passive block. Without this ability, you would not receive any DB from your shield when using it to attack."
+  },
+  "Defensive Ward": {
+    "rulesText": "Type: Combat Requirements: Any two weapons Rank Cost: 6 f You can choose to defend using your off-hand weapon o rather than attacking with it. You cannot attack with this - weapon during a round in which you use this ability, s but it is treated as a shield with a base +5 DB against h melee only (not ranged attacks), using your Multiple r Attacks skill in place of Shield skill. This permits you - to use a passive block (adding your Multiple Attacks ranks to your DB), or a partial or full block (based on your Multiple Attacks skill bonus). Note that passive block and passive dodge are not cumulative. A dagger may be used to block one attack; any other weapon may be used to block two."
+  },
+  "Dirty Fighting": {
+    "rulesText": "Type: Combat or Discipline Requirements: Any melee/unarmed attack Rank Cost: 4 You have a broad repertoire of tricks to distract and confuse your foe. You receive a +10 bonus on any maneuver to use a combat trick (see Combat Tricks in Chapter 1 for details)."
+  },
+  "Disarming": {
+    "rulesText": "Type: Any Requirements: Any melee/unarmed attack d Rank Cost: 4 o Your style incorporates special techniques for removing your foe’s weapon. You gain a +10 bonus to all Disarm maneuvers."
+  },
+  "Double Shot": {
+    "rulesText": "Type: Combat Requirements: Bow Rank Cost: 6 You may load and fire two arrows at once. Loading two arrows takes 2 additional AP. (The Improved Quickload ability will reduce this to 1 AP.) Both attacks must be made against the same target or adjacent targets, at no longer than Short range, with a -10 modifier."
+  },
+  "Dual-Draw": {
+    "rulesText": "Type: Combat T Requirements: Multiple Attacks skill R Rank Cost: 2 R You may draw and ready two one-handed weapons Y as a single action. This action requires 1 AP, or is an fl instantaneous action if you have the Quickdraw talent. w"
+  },
+  "Evade Shield": {
+    "rulesText": "Type: Battle or Combat Requirements: Chain weapon or whip Rank Cost: 5 You can take advantage of your weapon’s flexibility to bypass your foe’s shield. Their total shield DB (including any Shield skill or rank bonus from blocking) is halved against your attacks with a suitable weapon. R"
+  },
+  "Experienced Rider": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 4 Your fighting style is well suited to use on horseback (or on other mounts), granting a +10 bonus to Mounted Combat and +5 to Riding."
+  },
+  "Expert Defense": {
+    "rulesText": "Type: Battle Requirements: combatants under your leadership Rank Cost: 4 t You are familiar with your allies’ fighting styles and g are able to give them guidance in how to most effeca tively defend themselves. While you are actively calls ing out guidance to an ally (requiring Concentration), f for every -2 they apply to their OB for parrying, they s gain +3 DB (instead of the usual +2)."
+  },
+  "Fast Crank": {
+    "rulesText": "Type: Combat R Requirements: Crossbow, Quickload talent R Rank Cost: 6 W You can load and cock a light or hand crossbow in 3 s AP (normally this requires 6 AP) or a heavy crossbow c in 10 AP (normally 14). R"
+  },
+  "Feint": {
+    "rulesText": "Type: Discipline or Combat Requirements: Any melee/unarmed attack Rank Cost: 6 You may spend 1 AP for a Feint action. Make a conflicted maneuver of your weapon skill vs. your foe’s weapon skill. If you are successful, your foe’s active DB (from quickness, parrying, dodging, or a shield, but not from an armor bonus or any protection effective in all directions) is halved for your next attack action in the same or following round."
+  },
+  "Fight Free": {
+    "rulesText": "Type: Battle or Discipline Requirements: Any unarmed attack Rank Cost: 4 You are dangerous to grab. If a foe has achieved less than a 100% grapple on you, any grapple penalty to your unarmed attacks is halved, as you use a desperate mix of fists, knees, teeth, and head-butts to fight back."
+  },
+  "Focused Strike": {
+    "rulesText": "Type: Combat or Discipline Requirements: Multiple attacks with no penalty Rank Cost: 6 Although you are capable of making multiple attacks, you are also capable of channeling all of your power into a single strike to overwhelm your foe. To use this ability, you must be capable of making multiple attacks with no penalty. For each such attack that you give up, you gain a +15 OB bonus to your remaining attack. If you are giving up attacks with a shield or secondary weapon, you will not receive any benefit from those items (e.g., you cannot benefit from a shield defensively when taking this bonus)."
+  },
+  "From the Shoulder": {
+    "rulesText": "Type: Combat Requirements: Crossbow Rank Cost: 4 When firing a crossbow, you hold your crossbow at shoulder or eye level. You may apply the armor Perception penalty to your shots in place of the armor  Ranged attack penalty. Additionally, you are able to Character shoot over your allies more easily. The cover penalty for shooting past allies is halved."
+  },
+  "Gentle Tap": {
+    "rulesText": "Type: Any Requirements: Any melee/unarmed attack Rank Cost: 4 You are practiced at dealing non-lethal damage whether for the sake of a friendly bar brawl or when taking prisoners. You receive a +10 bonus to your Subdual skill."
+  },
+  "Get Inside": {
+    "rulesText": "Type: Combat or Discipline Requirements: Unarmed, Dagger, or Light Weapon (and see description) Rank Cost: 4 By taking advantage of the shorter reach of your attacks, you can get inside your foe’s melee range and make it difficult for them to attack you. To use this ability, your attacks must have a much smaller melee range than your opponent’s. If you are both the same Size, they must be using at least a one-handed weapon that is not light (i.e., not a weapon with a -1 Size adjustment) and you may use only unarmed attacks or a dagger. If they are wielding a two-handed weapon or if they are a larger Size than you, you may also use a light weapon. If they are a smaller Size than you, you cannot use this ability against them. Assuming you meet those requirements, after making an attack that scores a critical, you may advance into your foe’s space. Any in-progress attack (an attack on which they have already spent AP) against you by that foe is at -10 for a weapon 2' or longer, or -20 for a weapon 4' or longer, even if they move away from you before resolving the attack. Restricted Quarters skill may be used by your foe to cancel out these penalties In addition, while in their space, you move and act on their initiative, allowing you to keep with them when they move. If using the Faster Rounds optional rule rather than playing through individual phases (see Core Law section 8.2), the penalty applies to your foe’s next attack if it occurs in the current or next round."
+  },
+  "Grab and Slam": {
+    "rulesText": "Type: Discipline Requirements: Wrestling/Grappling Rank Cost: 6 After making an attack which results in a grapple, as a free action you may slam your foe into the floor, wall furniture, or other available surface. Resolve this as a Ram attack with an OB equal to the total grapple percentage. You may use this ability no more than once per round. If you make multiple attacks each of which may achieve a grapple, you may wait until the last one is resolved to make this free attack, assuming your foe is still grappled at that time."
+  },
+  "Greater Adrenal Defense": {
+    "rulesText": "r Type: Combat or Discipline Requirements: Adrenal Defense skill Rank Cost: 4 Your control of your defensive technique is steady and not easily disrupted. You gain the benefit of Adrenal n Defense for one additional round per full 5 the maneuver succeeded by (instead of the normal round per full 20, doubled)."
+  },
+  "Greater Adrenal Speed": {
+    "rulesText": "s Type: Discipline Requirements: Adrenal Speed skill Rank Cost: 6 Once you will yourself into an accelerated state, you - find it easy to maintain. You gain the benefit of Adrenal Speed for one additional round per full 10 the maneuver succeeded by (instead of the normal round per full 20)."
+  },
+  "Greater Adrenal Strength": {
+    "rulesText": "n Type: Battle or Discipline Requirements: Adrenal Strength skill Rank Cost: 6 l You can sustain a state of inhuman strength for much s. longer than normal. You gain the benefit of Adrenal n Strength for one additional round per full 10 the man neuver succeeded by (instead of the normal round per full 20)."
+  },
+  "Heedless Fury": {
+    "rulesText": "- k Type: Battle Requirements: Melee/unarmed without a shield Rank Cost: 6 You attack with reckless disregard for your own safety. Anyone attacking you in melee receives a +20 OB bonus, but your attack is considered one size larger."
+  },
+  "Hook Shield": {
+    "rulesText": "Type: Battle T Requirements: Axe or hooked weapon R Rank Cost: 3 R You can use your weapon to hook a foe’s shield and Y pull it out of line, creating an opening for your attacks r or those of your allies. Make a Disarm maneuver using a your weapon OB, as described in Core Law section a 9.7, except with no modifiers for the weapon type. c If successful, instead of disarming the foe, the foe’s m total shield DB including any bonus from their shield skill is halved until you make an attack with your axe or hook weapon, or they move away from you and you do not move to stay with them, but in any case, for a minimum of one round. On an absolute success, their shield DB is completely nullified for the same R duration. Y"
+  },
+  "Improved Concealed Strike": {
+    "rulesText": "Type: Combat or Discipline Requirements: Dagger or small weapon, Concealed Strike ability T Rank Cost: 4 R When you use your Concealed Strike ability, you may R apply up to half of your Ambush ranks (if any) to your W critical result. a"
+  },
+  "Improved Frenzy": {
+    "rulesText": "Type: Battle or Discipline Requirements: Frenzy talent Rank Cost: 3 fi You gain a +10 bonus to Adrenal Focus maneuvers to d begin or end a Frenzy. a"
+  },
+  "Improved Parry": {
+    "rulesText": "Type: Combat or Discipline Requirements: Any melee/unarmed attack Rank Cost: 4 When you parry using this style, for every +2 you reduce your OB, your DB increases by +3 (not +2 as normal). For example, if you reduce your OB by 10, you gain +15 DB against the foe you are parrying."
+  },
+  "Improved Quickdraw": {
+    "rulesText": "Type: Combat Requirements: Quickdraw talent, throwable weapon Rank Cost: 4 Your first weapon drawing action during a given round is considered an Instantaneous Action (0 AP), as normal for the Quickdraw talent. You may draw additional weapons as a free action (no action point cost). This is especially useful if you wish to throw multiple weapons over the course of the round."
+  },
+  "Improved Quickload": {
+    "rulesText": "Type: Combat Requirements: Bow, Quickload talent Rank Cost: 4 Your first loading action during a given round is considered an Instantaneous Action (0 AP), as normal for the Quickload talent. Additional loading actions during the same round are free actions with no AP cost."
+  },
+  "Improvised Weapons": {
+    "rulesText": "Type: Any Requirements: Improvised weapon Rank Cost: 4 When it comes right down to it, anything can be used as a weapon, and there’s a good chance you’ve tried. When using an improvised weapon, any penalty for the unsuitability of the item is reduced by 20. For example, a piece of firewood might normally be a -30 club, but for you it is only -10. This ability does not reduce similarity penalties, for example that piece of firewood may only be a -10 club for you, but if you don’t have the melee specialization to wield a club, you will suffer the usual similarity penalty when doing so."
+  },
+  "Jumping the Order": {
+    "rulesText": "Type: any Requirements: combatants under your leadership Rank Cost: 2 With a powerful command, you can spur an ally to immediate action. By giving a focused and perfectly timed order (requiring Concentration), you shift their initiative for the round to immediately follow your own."
+  },
+  "Keep At Bay": {
+    "rulesText": "Type: Any Requirements: Pole arm or two-handed weapon Rank Cost: 5 When an opponent with a smaller combat range (i.e. shorter reach) tries to move close enough to melee with you, you may resolve any in-progress attack before their attack is resolved. Your attack receives the normal modification based on the number of AP spent if it is less than 4. You may use your next AP for the present round (if any remain) to complete the attack if you wish. If your attack scores a critical, your foe must make a successful Running or Acrobatics maneuver; on failure, you keep them from entering melee range and they are not able to strike you. This maneuver is at -10 for each critical severity above A (e.g., -30 for a D critical), but +20 for each size your foe is larger than you. If using the Faster Rounds optional rule rather than playing through individual phases (see Core Law section 8.2), assume a defender using this ability will have the opportunity to keep their foe at bay as long as they have not attacked before the foe attempts to move into range."
+  },
+  "Killing Strike": {
+    "rulesText": "Type: Any Requirements: Any melee attack Rank Cost: 6 Sometimes it’s worth going for the throat, even if it entails some risk. You may take a -10 penalty to your OB and DB for the round in order to gain a +5 bonus on all critical rolls for the round."
+  },
+  "Lancer's Knockback": {
+    "rulesText": "Type: Battle Requirements: Mounted, spear or lance Rank Cost: 4 o When you make a mounted charge against a target y on foot, you may choose to knock your foe back. You r must make the decision before rolling the critical. If a r critical is achieved, the severity of any critical is reduced by one, the foe is knocked back 5' per critical severity, and they must make a medium Running or Acrobatics maneuver to remain standing."
+  },
+  "Leg Sweep": {
+    "rulesText": "Type: Battle or Discipline Requirements: Chain weapon, pole arm, sweeps & ., throws or wrestling - Rank Cost: 4 e A foe on the ground is a foe half beaten. You’ve pract ticed maneuvers to knock a foe off his feet, whether by e hitting their body in a way that throws off their balance f or by striking their legs. Before making your attack, t you may decide to attempt to trip your foe. If you ; score a critical, its severity is reduced by one, and your e foe must exceed your total attack roll with a Running s maneuver to avoid being knocked prone."
+  },
+  "Lend Expertise": {
+    "rulesText": "Type: any Requirements: an ally Rank Cost: 4 g You may guide and coach an ally who accepts your o instructions in order to grant them the benefit of a single combat talent (but not a fighting style ability) that you possess. Your ally must be appropriately equipped (e.g., an ability that uses a shield will require the ally to have that shield) and meet any prerequisites for the style or ability (including other abilities or talents). Providing guidance requires Concentration for one round. Your ally may use the talent once (or for one t round if it has a duration rather than applying to a r single action) either in the same round or within one s round per two ranks you have in Leadership. A given ally may benefit only from a single granted talent at one time."
+  },
+  "Lightning Reflexes": {
+    "rulesText": "Type: Combat or Discipline T Requirements: Unarmed or light weapons or fencing R weapons (e.g., rapier) Rank Cost: 4* When you start the round wielding suitable weapons a (or if you are fighting unarmed), you receive a +5 inia tiative bonus. If you have the Quickdraw talent, you i also gain this bonus if your hands are free and empty a and you will be drawing suitable weapons. You may pick this ability multiple times; the bonus is cumulative."
+  },
+  "Loyal Protector": {
+    "rulesText": "Type: Any Requirements: Protect skill Rank Cost: 3 Your training prioritized protecting others. You gain a +10 bonus to your Protect skill when using this ability."
+  },
+  "Marshal's Voice": {
+    "rulesText": "Type: Any Requirements: None Rank Cost: 4 Your combat training involved working with a unit and directing them where and how to move. You gain a +10 bonus to your Leadership skill when using this style."
+  },
+  "Mount's Attack": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 4 You can direct your mount to attack your foes. The attack is resolved in the same phase as your own attack, based on the mount’s OB, and is treated as if your mount spent the same number of AP on the attack as you used in your own. You may use your Mounted Combat skill to offset any pace penalty that applies to this attack."
+  },
+  "Mountain Stance": {
+    "rulesText": "Type: Battle or Discipline Requirements: Standing on solid ground Rank Cost: 3 You have a solid stance and a strong connection to the earth. You are considered one size larger (or quadruple your normal weight) for any feat of strength attempting to move you. Any effect which would knock you back or move you (e.g., knockback from a critical) is halved. You may make a Physical RR to resist being knocked prone."
+  },
+  "Move Together": {
+    "rulesText": "Type: Any Requirements: None Rank Cost: 4 You have trained to fight in formation with your allies whether in a large unit or even a few allies fighting back-to-back. Any number of allies with this ability plus one designated leader (who must have Leadership skill), all of whom must be in a single group (no gaps more than 5'), may choose to move and act on the leader’s initiative. They must choose to do so before initiative is determined for the round. The leader’s initiative bonus is modified by -5, plus 1 for every 3 full ranks they have in Leadership skill. For example if the leader has 20 ranks in Leadership, their initiative is modified by -5 +6 = +1."
+  },
+  "Off-Hand Dagger": {
+    "rulesText": "Type: Combat Requirements: Dagger Rank Cost: 2 You do not receive any off-hand penalty when wielding a dagger in your off-hand. Normally, a weapon wielded in the off-hand incurs a -20 penalty unless you have the Ambidextrous talent. This is essentially a limited form of Ambidextrous that only applies to an off-hand dagger. Penalties for multiple attacks still apply as normal."
+  },
+  "Off-Hand Light Weapon": {
+    "rulesText": "Type: Combat Requirements: Off-Hand Dagger ability Rank Cost: 2 You do not receive any off-hand penalty when wielding any light weapon in your off-hand. A light weapon is any weapon listed as having a -1 Size adjustment e.g., short sword, epee, machete, light flail, hand axe or light mace. Penalties for multiple attacks still apply as normal."
+  },
+  "Overbearing": {
+    "rulesText": "ROLEMASTER Type: Battle UNIFIED Requirements: Shield Character Rank Cost: 2 When you make a shield bash attack, you may choose to inflict Unbalancing criticals rather than Krush criticals. Unbalancing criticals are more likely to drive a foe back or knock them down. You must make the decision before rolling the critical."
+  },
+  "Pain Resistance": {
+    "rulesText": "Type: Battle or Discipline Requirements: Fortitude Rank Cost: 6 s, You have inured yourself to pain and can fight through g it better than most. Whenever you make a Fortitude y maneuver, all fatigue, injury, and Stun penalties to that - Fortitude maneuver are halved."
+  },
+  "Paired Weapon Attack": {
+    "rulesText": "Type: Combat Requirements: Wielding two matched weapons e, Rank Cost: 4 e Your weapons move as one to exploit your foe’s vulnerabilities. You make a single attack roll based on your primary weapon (with no penalties for the use of multiple weapons), but it is treated as one size larger. You may not gain any other benefit from the secondary weapon when doing so (e.g., it cannot be used as a defensive ward or make an additional attack)."
+  },
+  "Point-Blank Shot": {
+    "rulesText": "- Type: Combat Requirements: Bow o Rank Cost: 3 l You have more experience than most archers might like shooting at extremely close foes. Within 20', you receive a +20 Point-Blank bonus."
+  },
+  "Pommel Strike": {
+    "rulesText": "Type: Combat or Discipline Requirements: Two-handed weapon - Rank Cost: 6 n You can take advantage of the size and leverage of t, your weapon to make two attacks with it. This is treate, ed as two attacks with two different weapons, with y the usual modifiers for Katas which may be mitigated with Multiple Attacks skill (see Katas in section 9.7 of Core Law for details). Generally, this results in a penalty of -75 to each attack against the same foe or -95 against two different foes, reduced by your Multiple Attacks skill. The two attacks must use different parts of the weapon, based on the same melee specialization OB. The second attack will be one size smaller, resolved on a - table appropriate for the second striking surface. The second attack for a quarterstaff or pole-arm is resolved on the fighting stick table (i.e., for the haft). An attack with the pommel of a two-handed sword is resolved on the mace table."
+  },
+  "Precise Target": {
+    "rulesText": "Type: Combat Requirements: Ranged Weapon i Rank Cost: 2 You are practiced at hitting small targets. The penalty for a called shot to a particular location on your target T is reduced to -10 (normally it is -25). This ability applies to a specific Ranged Weapon specialization (e.g., Bow, Crossbow, Thrown) designated by the style."
+  },
+  "Protect Mount": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 3 Your fighting style depends on a mount, so keeping your mount alive is important. You receive a +25 bonus when using the Protect skill to protect your mount, either by parrying or using a shield."
+  },
+  "Protected Rider": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 4 Although keeping your mount alive is important, T keeping yourself alive cannot be neglected. Once per round when you are targeted, you can make a Medium (+0) Riding maneuver to use your mount to protect yourself. The attack is resolved against the mount with all normal modifiers."
+  },
+  "Push Through It": {
+    "rulesText": "Type: Battle or Discipline Requirements: combatant under your leadership Rank Cost: 4 Through force of personality, you can inspire an ally to push through their stun. With a successful Leadership maneuver (requiring Concentration), you can reduce their accumulated stun by 2 rounds. On a partial success, 1 round of stun is removed; on absolute success, 3 rounds are removed."
+  },
+  "Quick to Action": {
+    "rulesText": "Type: any Requirements: combatant under your leadership Rank Cost: 4 With a successful Leadership maneuver (requiring Concentration), you can spur allies to be quick and responsive. Allies within 30' gain a +2 bonus on initiative rolls for the remainder of the battle. The initial maneuver must be made after battle has begun; it can be repeated to extend the bonus to allies who were not in the original 30' radius, but not to increase the bonus."
+  },
+  "Raging Wind": {
+    "rulesText": "Type: Battle or Discipline Requirements: Frenzy talent Rank Cost: 2 When you start the round in a Frenzy, you receive a +5 initiative bonus."
+  },
+  "Redirect": {
+    "rulesText": "Type: Discipline Requirements: Unarmed Sweeps Rank Cost: 3 You can redirect your opponent’s momentum to keep them at a distance. Before rolling a critical, you may decide to reduce the critical severity by one. Your foe is forced to move 5' per critical severity (before reduction) in the direction you choose, but not more than the distance they moved in the last round."
+  },
+  "Ride As One": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 2 Your movements are synchronized with those of your mount. You and your mount move and act on the same initiative, based on whichever has the higher initiative bonus."
+  },
+  "Ride Under Cover": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 3 By keeping a low posture or even hanging off one side of your mount, you may use your mount as cover against all attacks from the front and one side. You gain the benefit of half hard cover (+40 vs melee, +80 vs ranged attacks), but maintaining this posture requires Concentration. ROLEMASTER"
+  },
+  "Second Rank": {
+    "rulesText": "Type: Battle or Combat Requirements: Pole arm Rank Cost: 4 Your penalties for attacking past an ally are negated when you are wielding a pole arm. (Normally, attacks from behind an ally are at -40, reduced to -20 for pole arm attacks; this ability removes the penalty altogether.)"
+  },
+  "Seen It": {
+    "rulesText": "Type: Any Requirements: None Rank Cost: 4 You’ve done enough fighting, or at least watching fights, to see almost everything. If there’s a dirty trick that someone has ever tried in combat, you’ve probably seen it, and consequently you are rarely caught off guard. Whenever a foe uses a combat trick (see Chapter 1) against you, the difficulty of that trick is increased by two degrees (e.g., from Medium to Very Hard)."
+  },
+  "Shadowblade": {
+    "rulesText": "Type: Combat or Discipline Requirements: None Rank Cost: 6 You are adept at using darkness to gain the advantage in combat. You receive a bonus of +10 to your Blindfighting skill while using the fighting style granting this ability. In addition, if your modified Blindfighting skill exceeds the amount needed to cancel any darkness penalty, and your foe is subject to a darkness penalty, you may add up to +10 of that excess to your DB against that foe. For example, Marly is fighting Koen a human, at twilight (-20). Marly has +20 Blindfighting skill, increased to +30 by this ability. Since she only needs +20 to cancel out the penalty for twilight conditions, she can use the additional +10 as DB."
+  },
+  "Sharp Words": {
+    "rulesText": "ROLEMASTER Type: Combat UNIFIED Requirements: None Character Rank Cost: 4 You wield cutting repartee and razor-sharp words in addition to your weapons. You gain a bonus of +10 to any Influence maneuvers performed during combat"
+  },
+  "Shield Bash": {
+    "rulesText": "Type: Battle or Combat Requirements: Shield Rank Cost: 6 d While making an attack, you may use your shield to s make a shield bash as an additional attack in place of e using it defensively (and you gain no DB bonus from - your shield or blocking for the round). You do not suffer any penalty if both attacks are against the same foe, but your attacks are at -20 if you are using your shield and weapon against two different foes. This may not combined with any other additional attacks; it is a limited version of what is normally possible with the Katas rules (Core Law section 9.7) and Multiple Attacks skill. Alternatively, you may choose to receive g a +25 bonus to your Multiple Attacks skill as long as k one of your attacks is a shield bash."
+  },
+  "Shield Press": {
+    "rulesText": "Type: Battle Requirements: Shield Rank Cost: 4 After a successful shield bash attack (an attack that scored a critical), you may advance into your foe’s space, with your shield pressed directly against your foe or their shield (if they have one). Any in-progress attack (an attack on which they have already spent AP) against you by that foe is at -10 for a weapon 2' or lone ger, or -20 for a weapon 4' or longer, even if they move - away from you before resolving the attack. Restricted g Quarters skill may be used by your foe to cancel out g these penalties. - If using the Faster Rounds optional rule rather than - playing through individual phases (see Core Law secB tion 8.2), the penalty applies to your foe’s next attack n, if it occurs in the current or next round."
+  },
+  "Shield Wall": {
+    "rulesText": "Type: Battle Requirements: Shield Rank Cost: 6 You have trained to work together with other shieldbearers in order to protect your unit. When you are fighting within 5' of at least one ally with a shield and you use the Protect maneuver, both you and the ally you are trying to protect receive the full benefit of your parry DB (normally the parry DB must be divided between you)."
+  },
+  "Shieldbreaker": {
+    "rulesText": "Type: Battle T Requirements: Axe or two-handed weapon R Rank Cost: 4 R When trying to break a shield, you gain a +20 bonus Y on the maneuver to break a shield, and if the maneub ver is successful, the item suffers a -25 penalty on the fi breakage check. See Treasure Law for shield breaky age rules, but in summary, make an absolute maneuver y with your weapon skill in place of rolling an attack, y with modifiers as listed below. Examples of optimal e weapons for breaking shields are an axe for a wooden shield or a mace to crush a metal one. On success, the shield makes a breakage check, with modifiers as listed below. Table 4.2b - Shield Breaking Modifiers Situation Mod. Attack/maneuver bonuses Attacker +weapon OB Optimal weapon +10 Two-handed weapon +10 Each size larger +10 Shieldbreaker ability +20 Defense penalties to maneuver Defender -shield skill ranks Shield -base shield DB Shield material is stronger than weapon -difference Breakage roll modifiers Absolute Failure Roll breakage for weapon W Partial success +20 p Success +0 Absolute success -25 Optimal weapon -10 Two-handed weapon -10 Each size larger -10 Shield material is stronger than weapon +difference Shieldbreaker ability -25"
+  },
+  "Shoot from Cover": {
+    "rulesText": "Type: Combat Requirements: Bow or Crossbow Rank Cost: 5 When firing from behind cover, you do not take any penalty for obstructions within 10' of your own position (assuming there is enough opening to make an attack), and any Perception maneuver to determine your exact location suffers a penalty of -20 for partial cover, -40 for half cover, or -100 for full cover (90% or more)."
+  },
+  "Shot on the Run": {
+    "rulesText": "Type: Combat Requirements: Bow or Crossbow Rank Cost: 4 Staying mobile is important if you want to keep your foes at a distance. You may use half your Footwork  skill bonus when moving while making a bow or Character crossbow attack. (Normally, Footwork skill only applies for melee and thrown weapon attacks.)"
+  },
+  "Slowing Shot": {
+    "rulesText": "Type: Combat Requirements: Bow or Crossbow Rank Cost: 4 Keeping your foe from getting to you gives you more time to finish them off. If you make an attack against the target’s legs which deals a critical (whether as a called shot or hitting their legs by chance), before rolling you may choose to slow the target. The critical severity is reduced by one but the target’s base movement rate is reduced by 5' per original critical severity, to a minimum of half their original BMR If your critical inflicts an injury penalty, the target’s BMR is impaired until the injury is healed. Otherwise they will recover after ten minutes of rest."
+  },
+  "Split Focus": {
+    "rulesText": "Type: Combat or Discipline Requirements: Ability to make multiple attacks with a penalty of no more than -25 Rank Cost: 4 A combatant able to make multiple attacks is better able to keep multiple foes at bay. You gain a +25 bonus on any maneuvers intended to keep a foe from your flank or rear arc (assuming you are aware of them) See Facing and Flanking in section 9.5 of Core Law for details."
+  },
+  "Steady Shield": {
+    "rulesText": "Type: Battle Requirements: Shield Rank Cost: 2* Your shield is unyielding. The number of attacks you may use your shield against is increased by one. You may select this ability multiple times; the benefit is cumulative."
+  },
+  "Sweeping Parry": {
+    "rulesText": "Type: Combat or Discipline Requirements: None Rank Cost: 4 You are adept at fighting multiple opponents. When  you parry, instead of splitting your parry between opCharacter ponents, reduce the parry amount by -10 per additional foe, and apply the remaining amount against every attack by each foe for the round. For example, if you have an OB of 80 and are fighting two foes, you could make a +40 OB attack while gaining the benefit of +30 parry against both foes (+40 minus 10 for the second 102 foe)."
+  },
+  "Swift-Footed": {
+    "rulesText": "Type: Combat or Discipline Requirements: Total encumbrance and maneuver penalty no more than -10 e Rank Cost: 2* t You are quick on your feet. Your base movement rate a (BMR) is increased by 5' while in combat (and using e the associated fighting style), for movement up to a - Run (3x) pace. You may select this ability multiple e times; the bonus is cumulative."
+  },
+  "Throw and Melee": {
+    "rulesText": "Type: Combat Requirements: Multiple Attacks skill, thrown weapon Rank Cost: 2 When making a multiple attack action (i.e., Katas using the Multiple Attacks skill), one or more of the attacks may be a thrown weapon attack. The thrown weapon attack may be resolved in an earlier phase if desired, in which case it incurs the usual penalties if r fewer than 3 AP were spent. For example, a characs ter might choose to spend 4 AP on an attack action, r resolved with a -0 thrown weapon attack on the third ). action phase and a -0 melee attack on the fourth action w phase."
+  },
+  "Trample": {
+    "rulesText": "Type: Battle Requirements: Mounted Rank Cost: 5 You may direct your mount to trample your foes. Your u mount may make a Trample attack against every foe in u a straight-line path. Each foe must be at least two sizes s smaller than your mount (e.g., a Large warhorse may trample Medium targets, but a Big horse or pony may only trample Small targets). This is a 4 AP action for the rider, with an OB based on the mount’s kicking or trampling attack plus your number of ranks in Riding."
+  },
+  "Trick Shot": {
+    "rulesText": "Type: Combat Requirements: Bow - - Rank Cost: 5 y You are able to arc your shots to hit foes from unexu pected angles. Any cover modifiers for your attacks d are halved, assuming you know the target’s position."
+  },
+  "Two-Handed Grip": {
+    "rulesText": "Type: Combat T Requirements: One-handed weapon and a free hand R Rank Cost: 6 R A one-handed weapon moves easily, but sometimes W you want more strength behind your blows. You may t grip your weapon with both hands, gaining the normal u +10 OB modifier for a two-handed weapon and while a doing so you also inflict x1.5 concussion hits. f"
+  },
+  "Unarmed Parry": {
+    "rulesText": "Type: Discipline Requirements: Unarmed combat T Rank Cost: 2 R Combatants who are unarmed and unarmored are norR mally treated as having restricted parry, halving their Y parry DB when they parry weapon attacks. You have b trained extensively at parrying weapons with your w bare hands, whether by blocking the wielder’s arm or b hand, or simply using your defensive focus to move a out of the weapon’s path. You receive the full benefit t of your parry even when unarmed against an armed b opponent."
+  },
+  "Vigilant": {
+    "rulesText": "Type: Any Requirements: None Rank Cost: 3 You are keenly aware of potential threats to yourself and those you wish to protect. You gain a +10 bonus to Perception maneuvers, but only to detect threats including ambush, hidden weapons, and traps. This applies both during and outside of combat, as long as you are not using any ability from any other fighting style at the same time."
+  },
+  "Walk It Off": {
+    "rulesText": "Type: Battle Requirements: combatant under your leadership Rank Cost: 3 Your leadership drives allies to the limits of their capabilities. By spending one round inspiring them to push forward (requiring Concentration), you grant a bonus of twice your Leadership ranks to their Fortitude maneuvers. They continue receiving the benefit until they fail a Fortitude maneuver or the battle ends."
+  },
+  "Weapon Breaker": {
+    "rulesText": "Type: Battle or Discipline Requirements: Two-handed weapon Rank Cost: 5 When attacking with a suitable weapon, you may attempt to break your foe’s weapon. You must decide to use this ability before making the attack. If you score a critical, the critical severity is reduced by one (e.g., from a D critical to C) and their weapon must make a breakage check at -25."
+  },
+  "Weapon Form: Dagger": {
+    "rulesText": "Type: Discipline Requirements: Varies Rank Cost: Varies Your fighting style uses maneuvers designed to work both with a weapon and without. You may make weapon attacks using an appropriate Unarmed Combat specialization defined by your fighting style, with a modifier as listed below. The Rank Cost depends on the weapon. A specific weapon must be selected (e.g., broadsword, light flail). Table 4.2c - Weapon Form Modifiers and Costs Weapon Specialization Cost. Dagger Strikes -10 2 Small net Wrestling -10 2 Light weapon Strikes -20 3 Light flail Strikes/Sweeps -20 3 Net Wrestling -20 3 1H Weapon Strikes -20 5 1H Chain/flail Strikes/Sweeps -20 5 Quarterstaff Strikes/Sweeps -20 4 * A light weapon is a weapon with a -1 Size adjustment, such as the hand axe, short sword, machete, light flail, light mace, or light stick."
+  },
+  "Weapon Form: Dagger or Short Sword": {
+    "rulesText": "Type: Discipline Requirements: Varies Rank Cost: Varies Your fighting style uses maneuvers designed to work both with a weapon and without. You may make weapon attacks using an appropriate Unarmed Combat specialization defined by your fighting style, with a modifier as listed below. The Rank Cost depends on the weapon. A specific weapon must be selected (e.g., broadsword, light flail). Table 4.2c - Weapon Form Modifiers and Costs Weapon Specialization Cost. Dagger Strikes -10 2 Small net Wrestling -10 2 Light weapon Strikes -20 3 Light flail Strikes/Sweeps -20 3 Net Wrestling -20 3 1H Weapon Strikes -20 5 1H Chain/flail Strikes/Sweeps -20 5 Quarterstaff Strikes/Sweeps -20 4 * A light weapon is a weapon with a -1 Size adjustment, such as the hand axe, short sword, machete, light flail, light mace, or light stick."
+  },
+  "Weapon Form: Net": {
+    "rulesText": "Type: Discipline Requirements: Varies Rank Cost: Varies Your fighting style uses maneuvers designed to work both with a weapon and without. You may make weapon attacks using an appropriate Unarmed Combat specialization defined by your fighting style, with a modifier as listed below. The Rank Cost depends on the weapon. A specific weapon must be selected (e.g., broadsword, light flail). Table 4.2c - Weapon Form Modifiers and Costs Weapon Specialization Cost. Dagger Strikes -10 2 Small net Wrestling -10 2 Light weapon Strikes -20 3 Light flail Strikes/Sweeps -20 3 Net Wrestling -20 3 1H Weapon Strikes -20 5 1H Chain/flail Strikes/Sweeps -20 5 Quarterstaff Strikes/Sweeps -20 4 * A light weapon is a weapon with a -1 Size adjustment, such as the hand axe, short sword, machete, light flail, light mace, or light stick."
+  },
+  "Zone of Control": {
+    "rulesText": "Type: Any Requirements: None Rank Cost: 3* You are quick to respond to foes attempting to slip past you. Whenever a foe passes through or leaves your melee range without making a cautious retreat (moving backwards at half speed up to Jog pace, as described under Withdrawing in Core Law section 8.2), you may make an immediate melee attack against them with a readied weapon as an instantaneous action, which does not interrupt any other action you have in progress (for example, you may continue an in-progress attack against a different foe). This attack is resolved as a 2 AP attack (resulting in a -50 penalty) but does not require any AP (beyond the requirement of an instantaneous action). If you select this ability twice, such attacks are resolved as 3 AP attacks (resulting in a -25 penalty); if you select it three times, they are resolved as 4 AP attacks (no penalty). -"
+  }
+}
