@@ -1,7 +1,4 @@
 import { RMUHerbUseApplication, checkAllHerbTimers, registerGmSocket, registerHerbChatListeners } from "./rmu-herbs.js";
-import { registerTalentCategories } from "./talent-categories.js";
-import { registerFightingStyleSkills } from "./fighting-styles.js";
-import { registerFightingStyleAbilityManager } from "./fighting-style-abilities.js";
 
 const MODULE_ID = "rmu-qol";
 
@@ -43,8 +40,6 @@ function registerSceneControls() {
 Hooks.once("init", () => {
   console.log(`${MODULE_ID} | Initializing`);
 
-  registerTalentCategories();
-
   game.rmuQol = {
     openHerbUse,
     checkHerbTimers: checkAllHerbTimers
@@ -61,11 +56,6 @@ Hooks.once("ready", () => {
 
   registerGmSocket();
   registerHerbChatListeners();
-  registerFightingStyleAbilityManager();
-  registerFightingStyleSkills().catch(error => {
-    console.error(`${MODULE_ID} | Unable to register fighting-style skills.`, error);
-    ui.notifications.error("RMU QoL could not register the Character Companion fighting-style skills.");
-  });
 });
 
 Hooks.on("updateCombat", async () => {
